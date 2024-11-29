@@ -15,7 +15,7 @@ local function main_loop()
   local commands = {
     ["add"] = function (symbolic_name, real_name) server:add_entry(symbolic_name, real_name) end,
     ["remove"] = function (symbolic_name) server:remove_entry(symbolic_name) end,
-    ["get"] = function (symbolic_name) write(server:look_up(symbolic_name)) end,
+    ["get"] = function (symbolic_name) write(server:look_up(symbolic_name) or "") end,
     ["save"] = function () server:save() end,
     ["load"] = function () server:load() end,
     ["stop"] = function () server:stop(); terminate = true end
