@@ -3,16 +3,8 @@ local DEFAULT_LOGGER = require "mb.log.default_logger"
 
 local strings = require "cc.strings"
 
-local modems = peripheral.find("modem")
-if #modems < 1 then
-  DEFAULT_LOGGER:error("No modem found.")
-  return
-end
-
-for _, modem in pairs(modems) do
-  rednet.open(peripheral.getName(modem))
-  break
-end
+-- start rednet
+peripheral.find("modem", rednet.open)
 
 local server = Server.new{
   log = DEFAULT_LOGGER
